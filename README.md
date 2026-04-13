@@ -1,22 +1,17 @@
-
-check steps.pdf. adula clear ah iruku
-
-
 STEP 1: CREATE MAVEN PROJECT
 
-project/
+Create structure:
+
+AgileLabFAT-Inheritance/
 │
 ├── src/
 │   ├── main/java/
 │   └── test/java/
 │
 ├── pom.xml
-
-STEP 2: WRITE JAVA CODE (INHERITANCE)
-
-App.java
-
-// Base class
+├── Dockerfile
+🚀 STEP 2: WRITE JAVA CODE (INHERITANCE)
+src/main/java/App.java
 class Animal {
     String name;
 
@@ -25,45 +20,34 @@ class Animal {
     }
 
     void sound() {
-        System.out.println("Animal makes sound");
+        System.out.println("Animal sound");
     }
 }
 
-// Derived class (Inheritance)
 class Dog extends Animal {
 
     Dog(String name) {
         super(name);
     }
 
-    // Method overriding
+    @Override
     void sound() {
         System.out.println(name + " barks");
     }
 }
 
-// Main class
 public class App {
     public static void main(String[] args) {
-        Dog d = new Dog("Tommy");  // You can change name here
+        Dog d = new Dog("Tommy");
         d.sound();
     }
 }
-
-STEP 3: WRITE JUNIT TESTS
-
-AppTest.java
-
+🚀 STEP 3: WRITE JUNIT TEST
+src/test/java/AppTest.java
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
-
-    @Test
-    void testObjectCreation() {
-        Dog d = new Dog("Tommy");
-        assertEquals("Tommy", d.name);
-    }
 
     @Test
     void testInheritance() {
@@ -71,11 +55,7 @@ public class AppTest {
         assertTrue(d instanceof Animal);
     }
 }
-
-STEP 4: CONFIGURE 
-
-pom.xml
-
+🚀 STEP 4: CREATE pom.xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
@@ -83,8 +63,8 @@ pom.xml
 
  <modelVersion>4.0.0</modelVersion>
 
- <groupId>com.example</groupId> <!-- CHANGE -->
- <artifactId>my-app</artifactId> <!-- CHANGE -->
+ <groupId>com.agilelab</groupId>
+ <artifactId>inheritance-app</artifactId>
  <version>1.0</version>
 
  <properties>
@@ -112,88 +92,57 @@ pom.xml
  </build>
 
 </project>
+🚀 STEP 5: RUN MAVEN (IMPORTANT)
+mvn clean test
+mvn package
 
-###Replace:
+✔ Must show BUILD SUCCESS
 
-com.example → your name/company (e.g., com.lakshaya)
-my-app → your project name###
+🚀 STEP 6: CONNECT TO GITHUB
 
-
-
-STEP 5: GITHUB COMMANDS
+Inside project folder:
 
 git init
 git add .
-git commit -m "Initial commit"
+git commit -m "Initial commit - Inheritance project"
 git branch -M main
-
-# REPLACE BELOW URL
-git remote add origin https://github.com/USERNAME/REPO-NAME.git
-
+git remote add origin https://github.com/deepakkumars2023/AgileLabFAT-Inheritance.git
 git push -u origin main
+🚀 STEP 7: MODIFY CODE & PUSH AGAIN
 
-###Replace:
-
-USERNAME → your GitHub username
-REPO-NAME → your repository name###
-
-
-STEP 6: MODIFY CODE & PUSH AGAIN
-
-###Make any change (example):
+Example change:
 
 System.out.println("Dog is barking loudly");
 
-
-###Then:
+Then:
 
 git add .
 git commit -m "Updated code"
 git push
-
-STEP 7: DOCKERFILE
-
-dockerfile:
-
+🚀 STEP 8: CREATE DOCKERFILE
 FROM eclipse-temurin:17
 WORKDIR /app
 COPY target/*.jar app.jar
 CMD ["java", "-jar", "app.jar"]
+🚀 STEP 9: DOCKER BUILD & PUSH
+docker build -t deepakkumars2023/agilelabfat-inheritance:latest .
+docker push deepakkumars2023/agilelabfat-inheritance:latest
+🚀 STEP 10: CREATE JENKINS PIPELINE
 
-
-STEP 8: BUILD & TEST
-
-mvn clean test
-mvn package
-
-
-STEP 9: DOCKER COMMANDS
-
-# REPLACE IMAGE NAME
-docker build -t USERNAME/app-name:latest .
-
-docker push USERNAME/app-name:latest
-
-Replace:
-
-USERNAME → DockerHub username
-app-name → project name
-
-
-STEP 10: JENKINS PIPELINE
+Create new pipeline job → paste:
 
 pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "USERNAME/app-name:latest"  // CHANGE
+        DOCKER_IMAGE = "deepakkumars2023/agilelabfat-inheritance:latest"
     }
 
     stages {
 
         stage('Checkout GitHub') {
             steps {
-                git 'https://github.com/USERNAME/REPO-NAME.git' // CHANGE
+                git 'https://github.com/deepakkumars2023/AgileLabFAT-Inheritance.git'
             }
         }
 
@@ -222,35 +171,37 @@ pipeline {
         }
     }
 }
+🚀 STEP 11: RUN PIPELINE
 
-###Replace:
+👉 Click Build Now
 
-USERNAME → your GitHub & DockerHub username
-REPO-NAME → GitHub repo name
-app-name → project name
+✔ Should execute all stages
 
-
-
-PART (b): INHERITANCE EXPLANATION
-
-class Animal {
-    void sound() {
-        System.out.println("Animal sound");
-    }
-}
-
-class Dog extends Animal {
-    void sound() {
-        System.out.println("Dog barks");
-    }
-}
-
-
-
-🔹Explanation
-Animal → Parent class
-Dog → Child class
-extends keyword used
+🧠 PART (b): INHERITANCE (WRITE THIS)
+Animal is parent class
+Dog is child class
+Uses extends
 Method overriding implemented
-Code reuse achieved
+Demonstrates code reuse
+📝 FINAL ANSWER (WRITE THIS EXACTLY)
 
+A Maven-based Java application named AgileLabFAT-Inheritance was developed implementing inheritance using Animal and Dog classes. The code was tested using JUnit and pushed to GitHub. Jenkins pipeline was configured to automate Continuous Integration including stages for GitHub checkout, testing, building, Docker image creation, and pushing to Docker Hub.
+
+🏆 FINAL RESULT
+
+✔ Java app created
+✔ Inheritance implemented
+✔ JUnit testing done
+✔ GitHub integration done
+✔ Jenkins pipeline executed
+✔ Docker image pushed
+
+🔥 DONE
+
+You can now:
+
+✔ Execute from scratch
+✔ Write full answer
+✔ Explain confidently
+
+If anything breaks, just send error — I’ll debug instantly 👍
