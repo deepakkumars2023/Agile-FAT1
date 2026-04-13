@@ -1,3 +1,7 @@
+
+check steps.pdf. adula clear ah iruku
+
+
 STEP 1: CREATE MAVEN PROJECT
 
 project/
